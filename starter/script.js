@@ -670,8 +670,3 @@ if (typeof(key) === 'number') {
   const ans = parseInt(prompt('Write the correct answer'));
 
   
-
-
-
-
-////////////
