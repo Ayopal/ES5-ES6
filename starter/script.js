@@ -74,7 +74,13 @@ console.log('--------' + i);
 
 
 
-////////////////////////////////////////////////////////////////////////Lecture: Blocks and IIFEs
+//
+// ────────────────────────────────────────────────────────────────────────────────────────── I ──────────
+//   :::::: L E C T U R E :   B L O C K S   A N D   I I F E S : :  :   :    :     :        :          :
+// ────────────────────────────────────────────────────────────────────────────────────────────────────
+//
+
+
 
 /*
 //ES5 
@@ -279,7 +285,7 @@ var friends = ['Bob', 'John', 'Mark'];
 new person('Paul').myFriends5(friends);
 
 
-
+*/
 
 
 
@@ -335,9 +341,11 @@ const { firstName: a, lastName: b} = obj; // changing the variable from firstnam
     return [age, 65 - age];
  };
 
+
  const [age, retirement] = calcAgeRetirement(2016);
  console.log(age);
  console.log(retirement);
+
 
 */
 
@@ -346,78 +354,117 @@ const { firstName: a, lastName: b} = obj; // changing the variable from firstnam
 
 
 
-
-
-
-////////////////////////////////////////////////////////////////////////Lecture: ARRAY IN ES6 / ES2015
+//
+// ──────────────────────────────────────────────────────────────────────────────────────────────── I ──────────
+// SECTION  :::::: L E C T U R E :   A R R A Y   I N   E S 6 /  E S 2 0 1 5 : :  :   :    :     :        :          :
+// ──────────────────────────────────────────────────────────────────────────────────────────────────────────
+//
 
 /*
 
 const boxes = document.querySelectorAll('.box'); // does not return array but this returns a nodelist
-//console.log(boxes); // nodelist output
-//// ES5
+console.log(boxes); // nodelist output
+
+*/
+
+/*
+
+// ES5
 
 var boxesArr5 = Array.prototype.slice.call(boxes); //changing a nodelist to an ARRAY
 console.log(boxesArr5); // converted the nodelist [boxes] to array
 
-boxesArr5.forEach(function(cur){
+boxesArr5.forEach(function(cur) {
     cur.style.backgroundColor = 'gray';
-});  // after we get the html code including the property and styles applied to it, we select the current line by [cur] and change the style.backgroundColor property of each line during the loop
+}); // after we get the html code including the property and styles applied to it, we select the current line by [cur] and change the style.backgroundColor property of each line during the loop
 
 
+/*
 
-//// ES6
+// ES6
+
 const boxesArr6 = Array.from(boxes); // converted the nodelist [boxes] to array
-//console.log(boxesArr6); // array output
+// console.log(boxesArr6); // array output
 boxesArr6.forEach(cur => cur.style.backgroundColor = 'dodgerblue'); // after we get the html code including the property and styles applied to it, we select the current line by [cur] and change the style.backgroundColor property of each line during the loop
 
 // OR
 
-//Array.from(boxes).forEach(cur => cur.style.backgroundColor = 'dodgerblue');
+// Array.from(boxes).forEach(cur => cur.style.backgroundColor = 'dodgerblue');
+
+*/
 
 
 
-///////////// LOOPS
+
+//
+// ANCHOR ─── LOOPS ──────────────────────────────────────────────────────────────────────
+//
+
+
+
+/**we use forEach or map in ES5 but the problem are continue statement
+1. We cannot
+break from them
+2. We cannot also use
+*/
+
+
+
+//ANCHOR ES5
 
 /*
 
+// Global Value
+const boxes = document.querySelectorAll('.box'); // does not return array but this returns a nodelist
+var boxesArr5 = Array.prototype.slice.call(boxes); // Coverts to array
 
-//we use forEach or map in ES5 but the problem are
+//console.log(boxesArr5);
 
-1. We cannot break from them
-2. We cannot also use continue statement
+for (var i = 0; i < boxesArr5.length; i++) {
+    var colors = ['green', 'blue', 'orange'];
 
+    // console.log(i, boxesArr5[i]);
 
-//ES5
+    if (boxesArr5[i].className === 'box orange') {
 
-for(var i = 0; i < boxesArr5.length; i++) {
+        boxesArr5[i].textContent = 'I changed to ' + colors[i] + ' because i am number ' + i;
 
-    if(boxesArr5[i].className === 'box blue') {
-        //continue; // when the 'box blue' is true the loop will skip the class name with 'box blue' and move to the next array.
-        break; // when the 'box blue' is true the loop will stop at the class name with 'box blue'
+      // console.log(boxesArr5[i].textContent);
     }
-
-    boxesArr5[i].textContent = 'I changed to blue!';
 
 };
 
-// ES6
+*/
+
+
+
+
+// ANCHOR ES6
+
+const boxes = document.querySelectorAll('.box'); // does not return array but this returns a nodelist
+const boxesArr6 = Array.from(boxes); // converted the nodelist [boxes] to array
+
+//console.log(boxesArr6);
+
+
 //we have a new loop statement for ES6 which is 'for of'
 for (const cur of boxesArr6) {
 
-    if(cur.className === 'box blue') {
+    if (cur.className === 'box blue') {
         continue;
+        //continue: when the 'box blue' is true the loop will skip the class name with 'box blue' and move to the next array.
+        // break: when the 'box blue' is true the loop will stop at the class name with 'box blue'
     }
     cur.textContent = 'I changed to blue!';
 
 };
 
 
-//// OR
+// OR
 
 for (const cur of boxesArr6) {
 
-    if(cur.className.includes('blue')) {
+    if (cur.className.includes('blue')) {
         continue;
     }
     cur.textContent = 'I changed to blue!';
@@ -445,10 +492,11 @@ pAge = age[ind];
 
 //// ES6
 
- var ind6 = age.findIndex(cur => cur >= 18); // 3
- var find6 = age.find(cur => cur >= 18); // 21
+var ind6 = age.findIndex(cur => cur >= 18); // 3
+var find6 = age.find(cur => cur >= 18); // 21
 
- or var pAge6 = age[ind]21
+// or
+var pAge6 = age[ind]
 
 
 console.log(ind6, find6);
@@ -458,9 +506,9 @@ console.log(ind6, find6);
 //Lecture: SPREAD OPERATOR (to expand anyment of an array in arguement or function calls)
 
 
-/*
 
-function addFourAges (a, b, c, d) {
+
+function addFourAges(a, b, c, d) {
 
     return a + b + c + d;
 }
@@ -502,7 +550,7 @@ const t3 = [t1, ...t2]; // converted nodelist to Array and cantenate with h1;
 
 for (const cur of t3) {
 
-    if(cur.className.includes('green')){
+    if (cur.className.includes('green')) {
 
         cur.textContent = 'I escaped the change wow!!! because i am green';
         continue;
@@ -510,16 +558,13 @@ for (const cur of t3) {
 
     cur.style.color = 'blue';
     cur.textContent = 'OOPS! Dev Paul! changed us';
-}; 
+};
 
 
 //// OR
 
 
 //Array.from(t3).forEach(cur => cur.style.color = 'red');
-
-
-*/
 
 
 
@@ -531,17 +576,17 @@ for (const cur of t3) {
 
 ////////////////////////////////////////////////////////////////////////Lecture: REST PARAMETERS (passing arbitrary argument to function, used in function declaration to insert arbitrary argument in function)
 
-/*
+
 //// ES5
 function isfullAge5() {
-console.log(arguments); // argument is an object not an array so we need to convert before we can loop
+    console.log(arguments); // argument is an object not an array so we need to convert before we can loop
 
-var argsArr = Array.prototype.slice.call(arguments);
+    var argsArr = Array.prototype.slice.call(arguments);
 
-argsArr.forEach(function (cur) {
-console.log((2016 - cur) >= 18);
+    argsArr.forEach(function(cur) {
+        console.log((2016 - cur) >= 18);
 
-})
+    })
 
 };
 
@@ -551,9 +596,9 @@ console.log((2016 - cur) >= 18);
 
 
 //  ES6
-function isfullAge6(...years  ){
+function isfullAge6(...years) {
     //rest operator converts the argument to array
-years.forEach(cur => console.log((2016 - cur) >= 18));
+    years.forEach(cur => console.log((2016 - cur) >= 18));
 
 };
 
@@ -567,32 +612,33 @@ isfullAge6(1990, 1999, 1965);
 //// ES5
 function isfullAge5(limit) {
     console.log(arguments); // argument is an object not an array so we need to convert before we can loop
-    
+
     var argsArr = Array.prototype.slice.call(arguments, 1);
     //console.log(argsArr);
-    
-    argsArr.forEach(function (cur) {
-    console.log((2016 - cur) >= limit);
-    
-    })
-    
-    };
-    
-    isfullAge5(18, 1990, 1999, 1965);
-    //isfullAge5(1990, 1999, 1965, 2000, 1966, 1976);
-    
-    
-    
-    ! ES6
-    function isfullAge6(limit, ...years){
-        //rest operator converts the argument to array
-    years.forEach(cur => console.log((2016 - cur) >= limit));
-    
-    };
-    
-    isfullAge6(18, 1990, 1999, 1965);
 
-*/
+    argsArr.forEach(function(cur) {
+        console.log((2016 - cur) >= limit);
+
+    })
+
+};
+
+isfullAge5(18, 1990, 1999, 1965);
+//isfullAge5(1990, 1999, 1965, 2000, 1966, 1976);
+
+
+
+!ES6
+
+function isfullAge6(limit, ...years) {
+    //rest operator converts the argument to array
+    years.forEach(cur => console.log((2016 - cur) >= limit));
+
+};
+
+isfullAge6(18, 1990, 1999, 1965);
+
+
 
 
 
@@ -601,45 +647,47 @@ function isfullAge5(limit) {
 
 
 // SECTION Lecture: DEFAULT PARAMETERS (used to preset parameters);
-/*
-
- * ES5
-    
-    function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
 
 
-        //// setting preset value for lastName and nationality
-        lastName === undefined ? lastName = 'Smith' : lastName;
-        nationality === undefined ? nationality = 'Nigeria' : nationality;
+*
+ES5
 
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.yearOfBirth = yearOfBirth;
-        this.nationality = nationality;
-    } // function constructor
+function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
 
 
+    //// setting preset value for lastName and nationality
+    lastName === undefined ? lastName = 'Smith' : lastName;
+    nationality === undefined ? nationality = 'Nigeria' : nationality;
 
-    * ES6
-
-    //setting preset values in ES6
-    function SmithPerson(firstName, yearOfBirth, lastName = 'Smith', nationality = 'American') {
-
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.yearOfBirth = yearOfBirth;
-        this.nationality = nationality;
-    }; // NOTE function constructor
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.yearOfBirth = yearOfBirth;
+    this.nationality = nationality;
+} // function constructor
 
 
-    //// OUTPUT
 
-    var john = new SmithPerson('John', 1990);
-    var emily = new SmithPerson('emily', 1996, 'paul', 'european');
+*
+ES6
 
-    console.log(john, emily);
+//setting preset values in ES6
+function SmithPerson(firstName, yearOfBirth, lastName = 'Smith', nationality = 'American') {
 
- */
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.yearOfBirth = yearOfBirth;
+    this.nationality = nationality;
+}; // NOTE function constructor
+
+
+//// OUTPUT
+
+var john = new SmithPerson('John', 1990);
+var emily = new SmithPerson('emily', 1996, 'paul', 'european');
+
+console.log(john, emily);
+
+
 
 
 
