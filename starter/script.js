@@ -1,4 +1,10 @@
-////////////////////////////////////////////////////////////////////////// lecture: Let and Const
+//
+// ──────────────────────────────────────────────────────────────────────────────────── I ──────────
+// SECTION :::::: L E C T U R E :   L E T   A N D   C O N S T : :  :   :    :     :        :          :
+// ──────────────────────────────────────────────────────────────────────────────────────────────
+//
+
+
 
 
 /*
@@ -20,7 +26,7 @@ console.log(name6);
 
 
 /*
-//ES5
+// ES5
 function driversLicence5(passedTest) {
 
     if (passedTest) {
@@ -94,50 +100,60 @@ console.log('--------' + i);
 */
 
 
-
-
-
-////////////////////////////////////////////////////////////////////////Lecture: Stirngs
+//
+// ──────────────────────────────────────────────────────────────────────── I ──────────
+// SECTION   :::::: L E C T U R E :   S T R I N G S : :  :   :    :     :        :          :
+// ──────────────────────────────────────────────────────────────────────────────────
+//
 
 
 /*
-//ES6
+
+// ANCHOR ES6
 let firstName = 'John';
 let lastName = 'Smith';
 const yearOfBirth = 1990;
+
 function calcAge(year) {
     return 2016 - year;
 }
 
 
-//ES5
-console.log('This is ' + firstName + ' ' + lastName + ', and i am ' + calcAge(yearOfBirth) );
+// ANCHOR ES5
+console.log('This is ' + firstName + ' ' + lastName + ', and i am ' + calcAge(yearOfBirth));
 
-//ES6 (template literals)
+// ANCHOR ES6 (template literals)
 console.log(`This is ${firstName} ${lastName}, and i am ${calcAge(yearOfBirth)}`);
 
-
-////////////////////Strings method//////////////////////////
+// NOTE Strings method
 const n = `${firstName} ${lastName}`;
 
-//check
+// ? check
 console.log(n.startsWith('o')); //false
 console.log(n.endsWith('h')); //true
-console.log(n.includes('Sm')); //true
-console.log(`${firstName} `.repeat(5));
+console.log(n.includes('SQ')); //true
+console.log(`${firstName} `.repeat(10));
+
 
 */
 
 
 
 
+//
+// ──────────────────────────────────────────────────────────────────────────────────────── I ──────────
+// SECTION  :::::: L E C T U R E :   A R R O W   F U N C T I O N S : :  :   :    :     :        :          :
+// ──────────────────────────────────────────────────────────────────────────────────────────────────
+//
+
 /*
-////////////////////////////////////////////////////////////////////////Lecture: Arrow Functions
 
 const years = [1997, 1995, 1994, 2000];
 
+
+
 // ES5
-var ages5 = years.map(function(el){
+var ages5 = years.map(function(el) {
     return 2016 - el;
 });
 
@@ -145,16 +161,17 @@ console.log(ages5);
 
 
 
-///////////ES6
+// ES6
 
 
 // ES6 (one arg | one line of code)
 const ages6 = years.map(el => 2016 - el);
 console.log(ages6);
- 
+
+
 // ES6 (two arg | parenthesis for the arg(x, y) | then arrow and output value)
 let scndAges6 = years.map((el, index) => `Age element ${index + 1}: Born on ${el}, and is now currently ${2016 - el} years old`);
-console.log(scndAges6); 
+console.log(scndAges6);
 
 //OR
 
@@ -164,14 +181,21 @@ scndAges6 = years.map((el, index) => {
     const age = now - el;
     return `Age element ${index + 1}: born on ${el}, and is now ${age}`
 });
-console.log(scndAges6); 
+console.log(scndAges6);
+
+
 
 */
 
 
 
+//
+// ──────────────────────────────────────────────────────────────────────────────────────────── IV ──────────
+// SECTION  :::::: L E C T U R E :   A R R O W   F U N C T I O N S   2 : :  :   :    :     :        :          :
+// ──────────────────────────────────────────────────────────────────────────────────────────────────────
+//
 
-////////////////////////////////////////////////////////////////////////Lecture: Arrow functions 2
+
 
 /*
 
@@ -180,7 +204,6 @@ var box5 = {
     color: 'green',
     position: 1,
     clickMe: function() {
-
         var self = this;
         document.querySelector('.green').addEventListener('click', function() {
             var str = 'This is box number ' + self.position + ' and it is ' + self.color;
@@ -188,6 +211,7 @@ var box5 = {
         })
     }
 }
+
 box5.clickMe();  
 
  
@@ -206,12 +230,15 @@ const box6 = {
         });
     }
 };
+
 box6.clickMe(); 
 
 
 
 
-/////////////////////////////////ARROW FUNCTION
+//
+// ─── ARROW FUNCTION ─────────────────────────────────────────────────────────────
+//
 
 function person(name) {
   
@@ -219,7 +246,7 @@ function person(name) {
 }
  
 
-//////ES5
+// ANCHOR ES5
 
 person.prototype.myFriends5 = function(friends) {
 
@@ -257,24 +284,28 @@ new person('Paul').myFriends5(friends);
 
 
 
+//
+// ────────────────────────────────────────── I ──────────
+// SECTION Lecture: DESTRUCTURING (extract and store multiple items in single variable) : :  :   :    :     :        :          :
+// ────────────────────────────────────────────────────
+//
 
-////////////////////////////////////////////////////////////////////////Lecture: DESTRUCTURING (extract and store multiple items in single variable)
 
 
-//////   ARRAY   
+//   ARRAY   
 
-////// ES5
+// ES5
 /*
 var john = ['John', 26];
 var Name5 = john[0];
 var age5 = john[1];
 
 
-////  ES6
+//  ES6
 const [name, age] = ['John', 26];
 
 
-///// OBJECT
+// OBJECT
 
 const obj = {
     firstName: 'John',
@@ -316,7 +347,7 @@ const { firstName: a, lastName: b} = obj; // changing the variable from firstnam
 
 
 
- 
+
 
 ////////////////////////////////////////////////////////////////////////Lecture: ARRAY IN ES6 / ES2015
 
@@ -416,25 +447,18 @@ pAge = age[ind];
 
  var ind6 = age.findIndex(cur => cur >= 18); // 3
  var find6 = age.find(cur => cur >= 18); // 21
- //or var pAge6 = age[ind]; // 21
 
- console.log(ind6, find6);
-
+ or var pAge6 = age[ind]21
 
 
-
-*/
-
+console.log(ind6, find6);
 
 
+// SECTION  
+//Lecture: SPREAD OPERATOR (to expand anyment of an array in arguement or function calls)
 
 
-
-
- ////////////////////////////////////////////////////////////////////////Lecture: SPREAD OPERATOR (to expand anyment of an array in arguement or function calls)
-
-
- /*
+/*
 
 function addFourAges (a, b, c, d) {
 
@@ -526,7 +550,7 @@ console.log((2016 - cur) >= 18);
 
 
 
-//// ES6
+//  ES6
 function isfullAge6(...years  ){
     //rest operator converts the argument to array
 years.forEach(cur => console.log((2016 - cur) >= 18));
@@ -559,7 +583,7 @@ function isfullAge5(limit) {
     
     
     
-    //// ES6
+    ! ES6
     function isfullAge6(limit, ...years){
         //rest operator converts the argument to array
     years.forEach(cur => console.log((2016 - cur) >= limit));
@@ -575,17 +599,16 @@ function isfullAge5(limit) {
 
 
 
+
+// SECTION Lecture: DEFAULT PARAMETERS (used to preset parameters);
 /*
 
-    ////////////////////////////////////////////////////////////////////////Lecture: DEFAULT PARAMETERS (used to preset parameters);
-
-
-    //// ES5
+ * ES5
     
     function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
 
 
-        //// setting preset valur for lastName and nationality
+        //// setting preset value for lastName and nationality
         lastName === undefined ? lastName = 'Smith' : lastName;
         nationality === undefined ? nationality = 'Nigeria' : nationality;
 
@@ -597,7 +620,7 @@ function isfullAge5(limit) {
 
 
 
-    //// ES6
+    * ES6
 
     //setting preset values in ES6
     function SmithPerson(firstName, yearOfBirth, lastName = 'Smith', nationality = 'American') {
@@ -606,7 +629,7 @@ function isfullAge5(limit) {
         this.lastName = lastName;
         this.yearOfBirth = yearOfBirth;
         this.nationality = nationality;
-    }; // function constructor
+    }; // NOTE function constructor
 
 
     //// OUTPUT
@@ -622,51 +645,65 @@ function isfullAge5(limit) {
 
 
 
- ////////////////////////////////////////////////////////////////////////Lecture: MAPS (use object as hash maps => map string key to arbitrary values, any primitive can be used as key.)
+// SECTION Lecture: MAPS (use object as hash maps => map string key to arbitrary values, any primitive can be used as key.)
 
- const question = new Map();
-
-
- //// USING SET
- question.set('question', 'What is the official name of the lastest major Javascript version?');
- question.set(1, 'ES5');
- question.set(2, 'ES6');
- question.set(3, 'ES2015');
- question.set(4, 'ES7');
- question.set('correct', 3);
- question.set(true, 'Correct answer :D');
- question.set(false, 'Wrong, please try again!');
+const question = new Map();
 
 
+// ANCHOR USING SET
+question.set('question', 'What is the official name of the lastest major Javascript version?');
+question.set(1, 'ES5');
+question.set(2, 'ES6');
+question.set(3, 'ES2015');
+question.set(4, 'ES7');
+question.set('correct', 3);
+question.set(true, 'Correct answer :D');
+question.set(false, 'Wrong, please try again!');
 
- //// USING GET TO RETRIEVE DATA
-
- console.log(question.get(1));
- console.log(question.size);
 
 
- //// USING HAS TO CHECK THE PRESENCE OF AN ITEM
+// FIXME USING GET TO RETRIEVE DATA
 
-if (question.has(4)){
-   // question.delete(4);
-console.log('has 4 in the question')
+
+console.log(1)
+console.log(question.get(1));
+console.log(question.size);
+
+
+// SECTION USING HAS TO CHECK THE PRESENCE OF AN ITEM
+
+if (question.has(4)) {
+    // question.delete(4);
+    console.log('has 4 in the question')
 };
 
 
- //// LOOPING IN MAP
+// SECTION LOOPING IN MAP
 
- // forEach (ES5)
- //question.forEach((value, key) => console.log(`This is key: ${key} and The value: ${value}`));
+   // forEach (ES5)
+   //question.forEach((value, key) => console.log(`This is key: ${key} and The value: ${value}`));
 
 
-// for of(ES6)
-  for (let [key, value] of question.entries()) {
-if (typeof(key) === 'number') {
-    console.log(`This is key: ${key} and The value: ${value}`);
-} 
+   // ANCHOR for of(ES6)
+for (let [key, value] of question.entries()) {
+    if (typeof(key) === 'number') {
+        console.log(`This is key: ${key} and The value: ${value}`);
+    }
 
-  }
+}
 
-  const ans = parseInt(prompt('Write the correct answer'));
+const ans = parseInt(prompt('Write the correct answer'));
 
-  
+
+/**
+ * ? i love the line
+ * * You need help 
+ * ! dont touch it 
+ * @param   
+ */
+
+// ? i hail 
+// * Important 
+// ! Danger
+// TODO make plans 
+// @ param
